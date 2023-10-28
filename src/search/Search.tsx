@@ -1,16 +1,30 @@
 import './Search.css';
 
 function Search() {
+  let placeHolder: string | null = '';
+  if (localStorage.getItem('searchItem') !== null) {
+    placeHolder = localStorage.getItem('searchItem') as string;
+  }
+
+  console.log(placeHolder);
+
   return (
     <div className="search-section">
       <form action="/action_page.php">
         <input
-          type="search"
-          id="gsearch"
-          name="gsearch"
+          type="text"
+          name="search"
+          placeholder={placeHolder}
           className="search-bar"
         />
-        <input type="submit" value="Search" className="submit-button" />
+        <button
+          onClick={() => localStorage.setItem('searchItem', 'Search Term2')}
+          type="submit"
+          value="Search"
+          className="submit-button"
+        >
+          Search
+        </button>
       </form>
     </div>
   );
