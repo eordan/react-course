@@ -1,16 +1,15 @@
-import './Search.css';
+import './search.css';
 import React from 'react';
 
 class Search extends React.Component<object, { searchTerm: string }> {
   constructor(props: object) {
     super(props);
     this.state = {
-      searchTerm: '', // Define searchTerm in the initial state
+      searchTerm: '',
     };
   }
 
   componentDidMount() {
-    // Load the saved search term from local storage on component mount
     const savedTerm = localStorage.getItem('searchItem');
     if (savedTerm) {
       this.setState({ searchTerm: savedTerm });
@@ -18,17 +17,15 @@ class Search extends React.Component<object, { searchTerm: string }> {
   }
 
   handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Update the search term in state when the input changes
     this.setState({ searchTerm: event.target.value });
   };
 
   handleSearch = () => {
-    // Save the search term to local storage when the button is clicked
     localStorage.setItem('searchItem', this.state.searchTerm);
   };
 
   handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent the form from submitting
+    e.preventDefault();
     this.handleSearch();
   };
 
