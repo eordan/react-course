@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, ErrorInfo, PropsWithChildren } from 'react';
 
 type State = {
   hasError: boolean;
   error: Error | null;
 };
 
-class ErrorBoundary extends Component<object, State> {
-  constructor(props: object) {
+class ErrorBoundary extends Component<PropsWithChildren<object>, State> {
+  constructor(props: PropsWithChildren<object>) {
     super(props);
     this.state = { hasError: false, error: null };
   }
@@ -15,7 +15,7 @@ class ErrorBoundary extends Component<object, State> {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.log('Caught error:', error, errorInfo);
   }
 
