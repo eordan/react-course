@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import './result.css';
 
+type Item = {
+  name: string;
+  gender: string;
+  url: string;
+};
+
 class Result extends Component<
   object,
-  { items: Array<object>; searchTerm: string; error: Error | null }
+  { items: Item[]; searchTerm: string; error: Error | null }
 > {
   constructor(props: object) {
     super(props);
