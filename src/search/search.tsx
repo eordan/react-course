@@ -1,9 +1,9 @@
 import React from 'react';
 import './search.css';
 
-interface SearchProps {
-  onSearch: (searchTerm: string) => void;
-}
+type SearchProps = {
+  handleSearch: (searchTerm: string) => void;
+};
 
 class Search extends React.Component<SearchProps, { searchTerm: string }> {
   constructor(props: SearchProps) {
@@ -20,7 +20,7 @@ class Search extends React.Component<SearchProps, { searchTerm: string }> {
   handleSearch = () => {
     const { searchTerm } = this.state;
     localStorage.setItem('searchItem', searchTerm);
-    this.props.onSearch(searchTerm);
+    this.props.handleSearch(searchTerm);
   };
 
   handleSubmit = (e: React.FormEvent) => {

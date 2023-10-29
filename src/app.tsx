@@ -4,15 +4,22 @@ import Result from './result/result';
 import './index.css';
 
 class App extends React.Component {
-  handleSearch = (searchTerm) => {
-    this.resultComponent.fetchData(searchTerm);
+  constructor(props: object) {
+    super(props);
+    this.state = {
+      searchTerm: localStorage.getItem('searchItem') || '',
+    };
+  }
+
+  handleSearch = (searchTerm: string) => {
+    this.setState({ searchTerm });
   };
 
   render() {
     return (
       <React.StrictMode>
-        <Search onSearch={this.handleSearch} />
-        <Result ref={(component) => (this.resultComponent = component)} />
+        <Search handleSearch={this.handleSearch} />
+        <Result searchTerm={this.state.searchTerm} />
       </React.StrictMode>
     );
   }
