@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './result.css';
 
+type ResultProps = {
+  searchTerm: string;
+};
+
 type Item = {
   name: string;
   gender: string;
@@ -8,14 +12,13 @@ type Item = {
 };
 
 class Result extends Component<
-  object,
-  { items: Item[]; searchTerm: string; error: Error | null }
+  ResultProps,
+  { items: Item[]; error: Error | null }
 > {
-  constructor(props: object) {
+  constructor(props: ResultProps) {
     super(props);
     this.state = {
-      items: [], // The error occurs here
-      searchTerm: localStorage.getItem('searchItem') || '',
+      items: [],
       error: null,
     };
   }
@@ -24,10 +27,15 @@ class Result extends Component<
     this.fetchData();
   }
 
+  componentDidUpdate(prevProps: ResultProps) {
+    if (prevProps.searchTerm !== this.props.searchTerm) {
+      this.fetchData();
+    }
+  }
+
   fetchData = () => {
-    const { searchTerm } = this.state;
-    const apiURL = searchTerm
-      ? `https://swapi.dev/api/people/?search=${searchTerm}`
+    const apiURL = this.props.searchTerm
+      ? `https://swapi.dev/api/people/?search=${this.props.searchTerm}`
       : 'https://swapi.dev/api/people/';
 
     fetch(apiURL)
