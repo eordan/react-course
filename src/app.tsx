@@ -1,6 +1,7 @@
 import React from 'react';
 import Search from './search/search';
 import Result from './result/result';
+import ErrorBoundary from './errorBoundary';
 import './index.css';
 
 class App extends React.Component {
@@ -18,8 +19,12 @@ class App extends React.Component {
   render() {
     return (
       <React.StrictMode>
-        <Search handleSearch={this.handleSearch} />
-        <Result searchTerm={this.state.searchTerm} />
+        <ErrorBoundary>
+          <Search handleSearch={this.handleSearch} />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Result searchTerm={this.state.searchTerm} />
+        </ErrorBoundary>
       </React.StrictMode>
     );
   }

@@ -49,10 +49,6 @@ class Result extends Component<
       });
   };
 
-  handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchTerm: event.target.value.trim() });
-  };
-
   throwError = () => {
     throw new Error('Test error');
   };
