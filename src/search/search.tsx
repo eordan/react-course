@@ -1,27 +1,26 @@
-import './search.css';
 import React from 'react';
+import './search.css';
 
-class Search extends React.Component<object, { searchTerm: string }> {
-  constructor(props: object) {
+interface SearchProps {
+  onSearch: (searchTerm: string) => void;
+}
+
+class Search extends React.Component<SearchProps, { searchTerm: string }> {
+  constructor(props: SearchProps) {
     super(props);
     this.state = {
-      searchTerm: '',
+      searchTerm: localStorage.getItem('searchItem') || '',
     };
   }
 
-  componentDidMount() {
-    const savedTerm = localStorage.getItem('searchItem');
-    if (savedTerm) {
-      this.setState({ searchTerm: savedTerm });
-    }
-  }
-
   handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchTerm: event.target.value });
+    this.setState({ searchTerm: event.target.value.trim() });
   };
 
   handleSearch = () => {
-    localStorage.setItem('searchItem', this.state.searchTerm);
+    const { searchTerm } = this.state;
+    localStorage.setItem('searchItem', searchTerm);
+    this.props.onSearch(searchTerm);
   };
 
   handleSubmit = (e: React.FormEvent) => {
@@ -32,7 +31,7 @@ class Search extends React.Component<object, { searchTerm: string }> {
   render() {
     return (
       <div className="search-section">
-        <form onSubmit={this.handleSubmit} action="/action_page.php">
+        <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             name="search"
@@ -41,7 +40,7 @@ class Search extends React.Component<object, { searchTerm: string }> {
             onChange={this.handleInputChange}
             value={this.state.searchTerm}
           />
-          <button type="submit" value="Search" className="submit-button">
+          <button type="submit" className="submit-button">
             Search
           </button>
         </form>
