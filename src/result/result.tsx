@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import './result.css';
 
-class Result extends Component<object, { searchTerm: string }> {
+class Result extends Component<
+  object,
+  { items: Array<object>; searchTerm: string; error: Error | null }
+> {
   constructor(props: object) {
     super(props);
     this.state = {
-      items: [],
-      searchTerm: '',
+      items: [], // The error occurs here
+      searchTerm: localStorage.getItem('searchItem') || '',
       error: null,
     };
   }
@@ -32,7 +35,7 @@ class Result extends Component<object, { searchTerm: string }> {
       });
   };
 
-  handleSearchTermChange = (event) => {
+  handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ searchTerm: event.target.value.trim() });
   };
 
