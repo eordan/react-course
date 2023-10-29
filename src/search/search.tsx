@@ -44,6 +44,7 @@ class Search extends React.Component<SearchProps, { searchTerm: string }> {
             Search
           </button>
         </form>
+        <p>Enter `Luke`, `r2`, or `Vader`</p>
       </div>
     );
   }
