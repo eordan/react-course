@@ -4,7 +4,11 @@ import Result from './result/result';
 import ErrorBoundary from './errorBoundary';
 import './index.css';
 
-class App extends React.Component {
+type AppState = {
+  searchTerm: string;
+};
+
+class App extends React.Component<object, AppState> {
   constructor(props: object) {
     super(props);
     this.state = {
