@@ -1,6 +1,6 @@
 import React from 'react';
-import Search from './search/search';
-import Result from './result/result';
+import Search from './components/search/search';
+import Result from './components/result/result';
 import ErrorBoundary from './errorBoundary';
 import './index.css';
 

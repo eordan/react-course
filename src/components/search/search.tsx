@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button';
 import './search.css';
 
 type SearchProps = {
@@ -40,9 +41,7 @@ class Search extends React.Component<SearchProps, { searchTerm: string }> {
             onChange={this.handleInputChange}
             value={this.state.searchTerm}
           />
-          <button type="submit" className="submit-button">
-            Search
-          </button>
+          <Button />
         </form>
         <p>Enter `Luke`, `r2`, or `Vader`</p>
       </div>
