@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from './components/search/search';
+import Search from './components/SearchSection/SearchSection';
 import Result from './components/result/result';
 import ErrorBoundary from './errorBoundary';
 import './index.css';
