@@ -1,14 +1,11 @@
 import React from 'react';
-import SearchSection from './components/SearchSection';
-import Result from './components/Result';
-import ErrorBoundary from './components/ErrorBoundary';
+import SearchSection from '../components/SearchSection';
+import Result from '../components/Result';
+import ErrorBoundary from '../components/ErrorBoundary';
+import { AppState } from '../service/types';
 import './index.scss';
 
-type AppState = {
-  searchTerm: string;
-};
-
-class App extends React.Component<object, AppState> {
+export class App extends React.Component<object, AppState> {
   constructor(props: object) {
     super(props);
     this.state = {
@@ -33,5 +30,3 @@ class App extends React.Component<object, AppState> {
     );
   }
 }
-
-export default App;

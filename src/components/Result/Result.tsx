@@ -1,30 +1,25 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ResultProps, Item } from '../../service/types';
+import { fetchData } from '../../service/api';
 import './Result.scss';
 
 export function Result(props: ResultProps) {
   const [items, setItems] = useState<Item[]>([]);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchData = useCallback(() => {
-    const apiURL = props.searchTerm
-      ? `https://swapi.dev/api/people/?search=${props.searchTerm}`
-      : 'https://swapi.dev/api/people/';
-
-    fetch(apiURL)
-      .then((response) => response.json())
+  const fetchDataFromApi = useCallback(() => {
+    fetchData(props.searchTerm)
       .then((data) => {
-        setItems(data.results);
+        setItems(data);
       })
       .catch((error) => {
-        console.error(error);
         setError(error);
       });
   }, [props.searchTerm]);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    fetchDataFromApi();
+  }, [fetchDataFromApi]);
 
   const throwError = () => {
     throw new Error('Test error');
