@@ -16,7 +16,3 @@ export type State = {
   hasError: boolean;
   error: Error | null;
 };
-
-export type AppState = {
-  searchTerm: string;
-};

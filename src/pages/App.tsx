@@ -1,32 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchSection from '../components/SearchSection';
 import Result from '../components/Result';
 import ErrorBoundary from '../components/ErrorBoundary';
-import { AppState } from '../service/types';
 import './index.scss';
 
-export class App extends React.Component<object, AppState> {
-  constructor(props: object) {
-    super(props);
-    this.state = {
-      searchTerm: localStorage.getItem('searchItem') || '',
-    };
-  }
+export function App() {
+  const [searchTerm, setSearchTerm] = useState(
+    localStorage.getItem('searchItem') || ''
+  );
 
-  handleSearch = (searchTerm: string) => {
-    this.setState({ searchTerm });
+  const handleSearch = (searchTerm: string) => {
+    setSearchTerm(searchTerm);
   };
 
-  render() {
-    return (
-      <React.StrictMode>
-        <ErrorBoundary>
-          <SearchSection handleSearch={this.handleSearch} />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <Result searchTerm={this.state.searchTerm} />
-        </ErrorBoundary>
-      </React.StrictMode>
-    );
-  }
+  useEffect(() => {
+    localStorage.setItem('searchItem', searchTerm);
+  }, [searchTerm]);
+
+  return (
+    <React.StrictMode>
+      <ErrorBoundary>
+        <SearchSection handleSearch={handleSearch} />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Result searchTerm={searchTerm} />
+      </ErrorBoundary>
+    </React.StrictMode>
+  );
 }
