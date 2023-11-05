@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './result.css';
+import './result.scss';
 
 type ResultProps = {
   searchTerm: string;

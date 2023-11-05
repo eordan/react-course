@@ -2,7 +2,7 @@ import React from 'react';
 import Search from './components/SearchSection/SearchSection';
 import Result from './components/result/result';
 import ErrorBoundary from './errorBoundary';
-import './index.css';
+import './index.scss';
 
 type AppState = {
   searchTerm: string;
