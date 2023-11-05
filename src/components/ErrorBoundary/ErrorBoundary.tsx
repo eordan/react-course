@@ -1,11 +1,7 @@
-import React, { Component, ErrorInfo, PropsWithChildren } from 'react';
+import { Component, ErrorInfo, PropsWithChildren } from 'react';
+import { State } from '../../service/types';
 
-type State = {
-  hasError: boolean;
-  error: Error | null;
-};
-
-class ErrorBoundary extends Component<PropsWithChildren<object>, State> {
+export class ErrorBoundary extends Component<PropsWithChildren<object>, State> {
   constructor(props: PropsWithChildren<object>) {
     super(props);
     this.state = { hasError: false, error: null };
@@ -32,5 +28,3 @@ class ErrorBoundary extends Component<PropsWithChildren<object>, State> {
     return this.props.children;
   }
 }
-
-export default ErrorBoundary;

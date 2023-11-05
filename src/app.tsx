@@ -1,7 +1,7 @@
 import React from 'react';
-import Search from './components/SearchSection/SearchSection';
-import Result from './components/result/result';
-import ErrorBoundary from './errorBoundary';
+import SearchSection from './components/SearchSection';
+import Result from './components/Result';
+import ErrorBoundary from './components/ErrorBoundary';
 import './index.scss';
 
 type AppState = {
@@ -24,7 +24,7 @@ class App extends React.Component<object, AppState> {
     return (
       <React.StrictMode>
         <ErrorBoundary>
-          <Search handleSearch={this.handleSearch} />
+          <SearchSection handleSearch={this.handleSearch} />
         </ErrorBoundary>
         <ErrorBoundary>
           <Result searchTerm={this.state.searchTerm} />

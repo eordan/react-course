@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import Button from '../Button';
 import SearchBar from '../SearchBar';
+import { SearchProps } from '../../service/types';
 import './SearchSection.scss';
 
-type SearchProps = {
-  handleSearch: (searchTerm: string) => void;
-};
-
-export default function Search(props: SearchProps): React.ReactElement {
+export function SearchSection(props: SearchProps): React.ReactElement {
   const [searchTerm, setSearchTerm] = useState<string>(
     localStorage.getItem('searchItem') || ''
   );
