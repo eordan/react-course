@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SearchSection from '../components/SearchSection';
 import Result from '../components/Result';
 import ErrorBoundary from '../components/ErrorBoundary';
+// import { Route, Switch } from 'react-router-dom';
 import './index.scss';
 
 export function App() {
